@@ -62,18 +62,19 @@ if st.sidebar.button("Add & Prepare Download", type="primary"):
 if not st.session_state.df.empty:
     st.markdown("### Current Month Expenses")
     st.dataframe(st.session_state.df)
+
     month_str = datetime.now().strftime("%Y-%m")
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-        st.session_state.df.to_excel(writer, index=False)
+    csv = st.session_state.df.to_csv(index=False)
     st.download_button(
-        label="Download Lab_Expenses_" + month_str + ".xlsx",
-        data=output.getvalue(),
-        file_name=f"Lab_Expenses_{month_str}.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        label="Download Lab_Expenses_" + month_str + ".csv",
+        data=csv,
+        file_name=f"Lab_Expenses_{month_str}.csv",
+        mime="text/csv",
         type="primary"
     )
+    st.info("💡 CSV opens perfectly in Excel/Google Sheets – import as table for charts!")
 else:
     st.info("Add your first purchase on the left → download appears here!")
+
 
 
