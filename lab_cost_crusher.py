@@ -5,8 +5,7 @@ from datetime import datetime
 import io
 
 st.set_page_config(page_title="Lab Cost Crusher", layout="centered")
-st.title("Lab Cost Crusher – EV / Biotech Edition")
-st.markdown("by Peter Cruciata • @pe82519 • PhD Candidate in Extracellular Vesicles")
+st.title("Lab Cost Crusher – Cost Analyzer")
 
 # Initialize session state
 if 'df' not in st.session_state:
@@ -76,4 +75,5 @@ if not st.session_state.df.empty:
     )
 else:
     st.info("Add your first purchase on the left → download appears here!")
+
 
