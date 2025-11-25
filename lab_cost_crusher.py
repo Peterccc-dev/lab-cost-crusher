@@ -62,8 +62,7 @@ if st.sidebar.button("Add & Prepare Download", type="primary"):
 # Show table + download
 if not st.session_state.df.empty:
     st.markdown("### Current Month Expenses")
-    st.dataframe(st.session_state.df.style_on_hover_time=0.1)
-
+    st.dataframe(st.session_state.df)
     month_str = datetime.now().strftime("%Y-%m")
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
@@ -77,3 +76,4 @@ if not st.session_state.df.empty:
     )
 else:
     st.info("Add your first purchase on the left → download appears here!")
+
